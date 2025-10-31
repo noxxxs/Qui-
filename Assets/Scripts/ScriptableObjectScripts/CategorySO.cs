@@ -27,8 +27,6 @@ public class CategorySO : ScriptableObject
         {
             Debug.Log($"{propertyName} - Property is empty!");
         }
-        
-
     }
 }
 public enum CategoryType

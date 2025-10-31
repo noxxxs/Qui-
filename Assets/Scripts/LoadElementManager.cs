@@ -1,21 +1,47 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class LoadElementManager : MonoBehaviour
 {
+    public static LoadElementManager instance;
+
     [SerializeField] private GameObject _quizParent;
     [SerializeField] private GameObject _categoryPanelPrefab;
     [SerializeField] private GameObject _categoryNamePrefab;
     [SerializeField] private GameObject _buttonPrefab;
 
-    [Header("Categories in a Game")]
-    [SerializeField] private List<CategorySO> _CategoryList;
+    [Header("CategoriesSO")]
+    [SerializeField] private List<CategorySO> _categoryList;
+
+    [Header("QuestionSO")]
+    [SerializeField] private QuestionNoAIDataSO _noAIDataSO;
+    [SerializeField] private CringeSongSO _сringeSongSO;
+    [SerializeField] private OnlyTsukikoSO _onlyTsukikoSO;
+    [SerializeField] private MargsaContentSO _margsaContentSO;
+    [SerializeField] private FindTheLostSO _findTheLostSO;
+    [SerializeField] private MemeZaurSO _memeZaurSO;
+    [SerializeField] private GuessClipSO _guessClipSO;
+
+    [Header("UIElemetns")]
+    [SerializeField] private List<Button> _answerButtons;
+    [SerializeField] private GameObject _answerPanel;
+
+    private void Awake()
+    {
+        if (instance != null && instance != this)
+        {
+            Destroy(gameObject);
+        } else
+        {
+            instance = this;
+        }
+    }
 
     public void LoadQuizPanel()
     {
-        foreach (CategorySO categorySO in _CategoryList)
+        foreach (CategorySO categorySO in _categoryList) 
         {
             //Spawn Category Panel
             GameObject categoryPanel = Instantiate(_categoryPanelPrefab);
@@ -38,7 +64,7 @@ public class LoadElementManager : MonoBehaviour
 
 
                 // Set data to navigate to target question
-                QuestionButtonData QuestionButtonData = questionButton.GetComponent<QuestionButtonData>();
+                QuestionButtonNavigation QuestionButtonData = questionButton.GetComponent<QuestionButtonNavigation>();
                 QuestionButtonData.CategoryType = categorySO.Category;
                 QuestionButtonData.QuestionID = i + 1;
                 QuestionButtonData.QuizPanel = _quizParent;
@@ -50,5 +76,21 @@ public class LoadElementManager : MonoBehaviour
                 });
             }
         }
+    }
+
+    public void ShowNextQuestion()
+    {
+        SetUpAnswer();
+        ShowAnswerPanel();
+    }
+
+    public void SetUpAnswer()
+    {
+
+    }
+
+    public void ShowAnswerPanel()
+    {
+        _answerPanel.SetActive(true);
     }
 }

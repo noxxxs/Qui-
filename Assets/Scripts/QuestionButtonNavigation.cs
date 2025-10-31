@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class QuestionButtonData : MonoBehaviour
+public class QuestionButtonNavigation : MonoBehaviour
 {
     private GameObject _quizPanel;
     private CategoryType _categoryType;
@@ -25,5 +25,7 @@ public class QuestionButtonData : MonoBehaviour
     public void LoadNextQuestion()
     {
         Debug.Log(_categoryType + " " + _questionID);
+
+        LoadElementManager.instance.ShowNextQuestion();
     }
 }
