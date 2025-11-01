@@ -2,13 +2,13 @@ using UnityEngine;
 
 
 [CreateAssetMenu(fileName = "newCategory",menuName = "WWBMillionaire/Category",order = 0)]
-public class CategorySO : ScriptableObject
+public class CategoryContentSO : ScriptableObject
 {
+    [SerializeField] private CategoryType _category;
     [SerializeField] private string _categoryName;
     [SerializeField] private int _questionNumber;
     [SerializeField] private int _categoryAnswerNumber;
-    [SerializeField] private CategoryType _category;
-    private int _questionID;
+    [SerializeField] private GameObject _questionPanelPrefab;
 
     public string CategoryName { 
         get {ValidatePropetryOnRead(_categoryName, "_categoryName");
@@ -16,10 +16,8 @@ public class CategorySO : ScriptableObject
     public int QuestionNumber => _questionNumber;
     public int CategoryAnswerNumber => _categoryAnswerNumber;
     public CategoryType Category => _category;
-    public int QuestionID {  
-        get { return _questionID; }
-        set { _questionID = value; } 
-    }
+    public GameObject QuestionPanelPrefab => _questionPanelPrefab;
+
 
     private void ValidatePropetryOnRead<T>(T value, string propertyName)
     {
@@ -31,5 +29,5 @@ public class CategorySO : ScriptableObject
 }
 public enum CategoryType
 {
-    Photo, Second, Third
+    No_AI, CringeMargsa, OnlyTsukiko
 }

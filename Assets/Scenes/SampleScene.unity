@@ -838,6 +838,7 @@ RectTransform:
   m_Children:
   - {fileID: 290747510}
   - {fileID: 668942074}
+  - {fileID: 1178181177}
   - {fileID: 1421132399}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1121,7 +1122,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 72
+  m_fontSize: 18
   m_fontSizeBase: 24.12
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -1430,6 +1431,81 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1029348638}
   m_CullTransparentMesh: 1
+--- !u!1 &1178181176
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1178181177}
+  - component: {fileID: 1178181179}
+  - component: {fileID: 1178181178}
+  m_Layer: 5
+  m_Name: QuestionPanel_Parent
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1178181177
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1178181176}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 574845520}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1178181178
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1178181176}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
+  m_RaycastTarget: 0
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+  m_Type: 1
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &1178181179
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1178181176}
+  m_CullTransparentMesh: 1
 --- !u!1 &1421132398
 GameObject:
   m_ObjectHideFlags: 0
@@ -1674,11 +1750,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31079a8a788c3254395ad38389e4a11a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LoadElementManager
-  _quizParent: {fileID: 668942073}
   _categoryPanelPrefab: {fileID: 2731625448149936228, guid: 1bf468d5d6612344c991f4318c9aa4a5, type: 3}
   _categoryNamePrefab: {fileID: 3972746853972245281, guid: 6f0cfb1b2880f134d8275c9a088d7c4f, type: 3}
   _buttonPrefab: {fileID: 8085333968672713494, guid: 7666d71edb3186b4390eed190303bc6d, type: 3}
-  _categoryList:
+  _quizParent: {fileID: 668942073}
+  _answerButtons:
+  - {fileID: 1480379015}
+  - {fileID: 362964258}
+  - {fileID: 273057011}
+  - {fileID: 841278568}
+  _answerPanel: {fileID: 1421132398}
+  _questionPanelParent: {fileID: 1178181176}
+  _categoryContentList:
   - {fileID: 11400000, guid: 2d3f59d5489209742a048a819741553d, type: 2}
   - {fileID: 11400000, guid: 1df9fe654c1738b40aaf1fff97750fd6, type: 2}
   - {fileID: 11400000, guid: ed9a8d36de44a58489b362879466349e, type: 2}
@@ -1689,12 +1772,6 @@ MonoBehaviour:
   _findTheLostSO: {fileID: 11400000, guid: 358a6702d117f6743bef57e864b06ed6, type: 2}
   _memeZaurSO: {fileID: 11400000, guid: 0d32ae29b54b96a448ae2e0895abbce8, type: 2}
   _guessClipSO: {fileID: 11400000, guid: e74cc0f021f985c4bba52db708d26e08, type: 2}
-  _answerButtons:
-  - {fileID: 1480379015}
-  - {fileID: 362964258}
-  - {fileID: 273057011}
-  - {fileID: 841278568}
-  _answerPanel: {fileID: 1421132398}
 --- !u!1 &1837432312
 GameObject:
   m_ObjectHideFlags: 0

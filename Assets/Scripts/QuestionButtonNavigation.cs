@@ -27,5 +27,6 @@ public class QuestionButtonNavigation : MonoBehaviour
         Debug.Log(_categoryType + " " + _questionID);
 
         LoadElementManager.instance.ShowNextQuestion();
+        GameManager.instance.QuestionCategoryPanels[_categoryType].SetActive(true);
     }
 }

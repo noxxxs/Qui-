@@ -10,9 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: be8a550be14659d4184b0aad7d155891, type: 3}
-  m_Name: Second
+  m_Name: No_AI
   m_EditorClassIdentifier: Assembly-CSharp::CategorySO
-  _categoryName: Second
-  _questionNumber: 7
-  _categoryAnswerNumber: 4
-  _category: 1
+  _categoryName: No_AI
+  _questionNumber: 9
+  _categoryAnswerNumber: 2
+  _category: 0
+  _questionPanelPrefab: {fileID: 2034630744024447515, guid: b3a581d7325f3a0428d9e7be9217672c, type: 3}

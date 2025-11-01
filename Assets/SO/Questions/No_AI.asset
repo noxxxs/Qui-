@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5094abfea120c1c43bfb9392ff7933bc, type: 3}
   m_Name: No_AI
   m_EditorClassIdentifier: Assembly-CSharp::QuestionNoAIDataSO
-  FirstImage: {fileID: 0}
-  SecondImage: {fileID: 0}
+  FirstImage: []
+  SecondImage: []

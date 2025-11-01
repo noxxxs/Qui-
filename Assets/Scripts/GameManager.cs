@@ -8,6 +8,9 @@ public class GameManager : MonoBehaviour
     [Header("Scripts")]
     [SerializeField] private LoadElementManager _LoadElementManager;
 
+    [SerializeField] private Dictionary<CategoryType, GameObject> _questionCategoryPanels = new Dictionary<CategoryType, GameObject>();
+
+    public Dictionary<CategoryType, GameObject> QuestionCategoryPanels => _questionCategoryPanels;
     private void Awake()
     {
         if (instance != null && instance != this)
@@ -23,4 +26,6 @@ public class GameManager : MonoBehaviour
     {
         _LoadElementManager.LoadQuizPanel();
     }
+
+
 }

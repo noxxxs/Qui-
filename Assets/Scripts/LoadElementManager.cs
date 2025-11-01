@@ -7,16 +7,22 @@ public class LoadElementManager : MonoBehaviour
 {
     public static LoadElementManager instance;
 
-    [SerializeField] private GameObject _quizParent;
+    [Header("Prefabs")]
     [SerializeField] private GameObject _categoryPanelPrefab;
     [SerializeField] private GameObject _categoryNamePrefab;
     [SerializeField] private GameObject _buttonPrefab;
 
-    [Header("CategoriesSO")]
-    [SerializeField] private List<CategorySO> _categoryList;
+    [Header("UIElemetns")]
+    [SerializeField] private GameObject _quizParent;
+    [SerializeField] private List<Button> _answerButtons;
+    [SerializeField] private GameObject _answerPanel;
+    [SerializeField] private GameObject _questionPanelParent;
 
-    [Header("QuestionSO")]
-    [SerializeField] private QuestionNoAIDataSO _noAIDataSO;
+    [Header("CategoriesSO")]
+    [SerializeField] private List<CategoryContentSO> _categoryContentList;
+
+    [Header("QuestionDataSO")]
+    [SerializeField] private NoAIDataSO _noAIDataSO;
     [SerializeField] private CringeSongSO _сringeSongSO;
     [SerializeField] private OnlyTsukikoSO _onlyTsukikoSO;
     [SerializeField] private MargsaContentSO _margsaContentSO;
@@ -24,9 +30,7 @@ public class LoadElementManager : MonoBehaviour
     [SerializeField] private MemeZaurSO _memeZaurSO;
     [SerializeField] private GuessClipSO _guessClipSO;
 
-    [Header("UIElemetns")]
-    [SerializeField] private List<Button> _answerButtons;
-    [SerializeField] private GameObject _answerPanel;
+    
 
     private void Awake()
     {
@@ -41,7 +45,7 @@ public class LoadElementManager : MonoBehaviour
 
     public void LoadQuizPanel()
     {
-        foreach (CategorySO categorySO in _categoryList) 
+        foreach (CategoryContentSO categorySO in _categoryContentList) 
         {
             //Spawn Category Panel
             GameObject categoryPanel = Instantiate(_categoryPanelPrefab);
@@ -54,7 +58,7 @@ public class LoadElementManager : MonoBehaviour
             categoryName.name = categorySO.CategoryName;
             categoryName.GetComponentInChildren<TextMeshProUGUI>().SetText(categorySO.CategoryName);
 
-            // Spawn Question Buttons
+
             for (int i = 0; i < categorySO.QuestionNumber; i++)
             {
                 GameObject questionButton = Instantiate(_buttonPrefab);
@@ -75,6 +79,11 @@ public class LoadElementManager : MonoBehaviour
                     QuestionButtonData.QuizPanel.SetActive(false);
                 });
             }
+            // Spawn and deactivate QuestionPanels for each category
+            GameObject questionPanel = Instantiate(categorySO.QuestionPanelPrefab);
+            questionPanel.SetActive(false);
+            questionPanel.transform.SetParent(_questionPanelParent.transform, false);
+            GameManager.instance.QuestionCategoryPanels.Add(categorySO.Category, questionPanel);
         }
     }
 

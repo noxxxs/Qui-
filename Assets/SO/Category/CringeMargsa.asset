@@ -10,9 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: be8a550be14659d4184b0aad7d155891, type: 3}
-  m_Name: Third
+  m_Name: CringeMargsa
   m_EditorClassIdentifier: Assembly-CSharp::CategorySO
-  _categoryName: Third
-  _questionNumber: 5
-  _categoryAnswerNumber: 3
-  _category: 2
+  _category: 1
+  _categoryName: "\u0406\u0441\u043F\u0430\u043D\u0441\u044C\u043A\u0438\u0439 \u0417\u0430\u0432\u0440"
+  _questionNumber: 7
+  _categoryAnswerNumber: 4
+  _questionPanelPrefab: {fileID: 2034630744024447515, guid: b97ad65a24b870649acdcb50a141ebf6, type: 3}
