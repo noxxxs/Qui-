@@ -14,14 +14,13 @@ public class LoadElementManager : MonoBehaviour
 
     [Header("UIElemetns")]
     [SerializeField] private GameObject _quizParent;
-    [SerializeField] private List<Button> _answerButtons;
-    [SerializeField] private GameObject _answerPanel;
     [SerializeField] private GameObject _questionPanelParent;
 
     [Header("CategoriesSO")]
     [SerializeField] private List<CategoryContentSO> _categoryContentList;
 
     [Header("QuestionDataSO")]
+    [SerializeField] private RawrQuestionsSO _rawrQuestionSO;
     [SerializeField] private NoAIDataSO _noAIDataSO;
     [SerializeField] private CringeSongSO _сringeSongSO;
     [SerializeField] private OnlyTsukikoSO _onlyTsukikoSO;
@@ -30,7 +29,11 @@ public class LoadElementManager : MonoBehaviour
     [SerializeField] private MemeZaurSO _memeZaurSO;
     [SerializeField] private GuessClipSO _guessClipSO;
 
-    
+   
+
+    // private properties
+    private Dictionary<CategoryType, GameObject> _questionPanelsDictionary = new Dictionary<CategoryType, GameObject>();
+    public Dictionary<CategoryType, GameObject> QuestionPanelsDictionary => _questionPanelsDictionary;
 
     private void Awake()
     {
@@ -69,7 +72,7 @@ public class LoadElementManager : MonoBehaviour
 
                 // Set data to navigate to target question
                 QuestionButtonNavigation QuestionButtonData = questionButton.GetComponent<QuestionButtonNavigation>();
-                QuestionButtonData.CategoryType = categorySO.Category;
+                QuestionButtonData.CategoryType = categorySO.CategoryType;
                 QuestionButtonData.QuestionID = i + 1;
                 QuestionButtonData.QuizPanel = _quizParent;
                 // Add event to question button
@@ -83,23 +86,67 @@ public class LoadElementManager : MonoBehaviour
             GameObject questionPanel = Instantiate(categorySO.QuestionPanelPrefab);
             questionPanel.SetActive(false);
             questionPanel.transform.SetParent(_questionPanelParent.transform, false);
-            GameManager.instance.QuestionCategoryPanels.Add(categorySO.Category, questionPanel);
+            
+
+            // Throw log exeption
+            if (!_questionPanelsDictionary.TryAdd(categorySO.CategoryType, questionPanel))
+                throw new System.Exception("Category SO Data has wrong values");
         }
     }
 
-    public void ShowNextQuestion()
+    public void ShowNextQuestion(CategoryType categoryType, int questionID)
     {
-        SetUpAnswer();
-        ShowAnswerPanel();
+        SetNewAnswerOptions(categoryType, questionID);
+        SetNewQuesiton(categoryType, questionID);
+
+        UILogic.instance.ShowQuestionPanel(categoryType);
+        UILogic.instance.ShowAnswerPanel();
     }
 
-    public void SetUpAnswer()
-    {
 
+    public void SetNewQuesiton(CategoryType categoryType, int questionID)
+    {
+        if (_questionPanelsDictionary.ContainsKey(categoryType))
+        {
+            switch (categoryType)
+            {
+                case CategoryType.RawrQuestions:
+                    {
+                        QuestionPanelContent questionPanelContent = _questionPanelsDictionary[categoryType].GetComponent<QuestionPanelContent>();
+                        questionPanelContent.PanelObjectReferences[0].GetComponent<TextMeshProUGUI>().SetText(_rawrQuestionSO.Questions[questionID - 1]);
+                        // Enable image if needs
+                        if (_rawrQuestionSO.HasImage[questionID - 1])
+                        {
+                            questionPanelContent.PanelObjectReferences[1].GetComponent<Image>().sprite = _rawrQuestionSO.Sprites[questionID - 1];
+                            questionPanelContent.PanelObjectReferences[1].SetActive(true);
+                        } else
+                        {
+                            questionPanelContent.PanelObjectReferences[1].SetActive(false);
+                        }
+                    }
+                    break;
+            }
+        }
     }
 
-    public void ShowAnswerPanel()
+    public void SetNewAnswerOptions(CategoryType categoryType, int questionID)
     {
-        _answerPanel.SetActive(true);
+        if (_questionPanelsDictionary.ContainsKey(categoryType))
+        {
+            switch (categoryType)
+            {
+                case CategoryType.RawrQuestions:
+                    {
+                        for (int i = 0; i < UILogic.instance.AnswerButtons.Count; i++)
+                        {
+                            UILogic.instance.AnswerButtons[i].GetComponentInChildren<TextMeshProUGUI>().SetText(_rawrQuestionSO.answerGroup[questionID - 1].Answer[i]);
+                        }
+                        // Set correct answer
+                        GameManager.instance.СorrectAnswer = _rawrQuestionSO.answerGroup[questionID - 1].CorrectAnswer;
+
+                    }
+                    break;
+            }
+        }
     }
 }

@@ -3,5 +3,7 @@ using UnityEngine;
 
 public class QuestionPanelContent : MonoBehaviour
 {
-    public List<GameObject> PanelContent = new List<GameObject>();
+    [SerializeField] private List<GameObject> _panelObjectReferences;
+    public List<GameObject> PanelObjectReferences => _panelObjectReferences;
+
 }

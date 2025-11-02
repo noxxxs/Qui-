@@ -86,7 +86,7 @@ GameObject:
   - component: {fileID: 598543031996616233}
   - component: {fileID: 6970296016139846377}
   m_Layer: 5
-  m_Name: CringeMargsaQuestion_Panel
+  m_Name: CringeMargsa_QuestionPanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

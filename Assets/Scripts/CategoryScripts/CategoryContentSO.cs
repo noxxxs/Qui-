@@ -4,7 +4,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "newCategory",menuName = "WWBMillionaire/Category",order = 0)]
 public class CategoryContentSO : ScriptableObject
 {
-    [SerializeField] private CategoryType _category;
+    [SerializeField] private CategoryType _categoryType;
     [SerializeField] private string _categoryName;
     [SerializeField] private int _questionNumber;
     [SerializeField] private int _categoryAnswerNumber;
@@ -15,7 +15,7 @@ public class CategoryContentSO : ScriptableObject
             return _categoryName; } }
     public int QuestionNumber => _questionNumber;
     public int CategoryAnswerNumber => _categoryAnswerNumber;
-    public CategoryType Category => _category;
+    public CategoryType CategoryType => _categoryType;
     public GameObject QuestionPanelPrefab => _questionPanelPrefab;
 
 
@@ -29,5 +29,12 @@ public class CategoryContentSO : ScriptableObject
 }
 public enum CategoryType
 {
-    No_AI, CringeMargsa, OnlyTsukiko
+    RawrQuestions,
+    MargsaContent,
+    FindTheLost,
+    CringeMargsa,
+    OnlyTsukiko,
+    MemeZaur,
+    GuessClip,
+    No_AI,
 }

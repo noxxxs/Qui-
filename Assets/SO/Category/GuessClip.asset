@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: be8a550be14659d4184b0aad7d155891, type: 3}
-  m_Name: OnlyTskukiko
-  m_EditorClassIdentifier: Assembly-CSharp::CategorySO
-  _category: 2
-  _categoryName: "\u041E\u043D\u043B\u0456\u0426\u0443\u043A\u0456\u043A\u043E"
-  _questionNumber: 5
-  _categoryAnswerNumber: 3
-  _questionPanelPrefab: {fileID: 2034630744024447515, guid: 24a9bd614f891bf409b97179e5047ca4, type: 3}
+  m_Name: GuessClip
+  m_EditorClassIdentifier: Assembly-CSharp::CategoryContentSO
+  _categoryType: 6
+  _categoryName: "\u0421\u0444\u043E\u0442\u043A\u0430\u043B\u0430?"
+  _questionNumber: 8
+  _categoryAnswerNumber: 4
+  _questionPanelPrefab: {fileID: 2034630744024447515, guid: 75f531cc4be6581428f4225be70cb115, type: 3}
