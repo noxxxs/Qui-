@@ -1248,7 +1248,7 @@ MonoBehaviour:
   _questionPanelParent: {fileID: 1178181176}
   _answerPanelParent: {fileID: 1421132398}
   _returnToQestionsButton: {fileID: 1034402578}
-  _answerButtons:
+  _answerButtonsList:
   - {fileID: 1480379015}
   - {fileID: 362964258}
   - {fileID: 273057011}

@@ -8,12 +8,14 @@ public class GameManager : MonoBehaviour
     [Header("Scripts")]
     [SerializeField] private LoadElementManager _LoadElementManager;
 
+    private Button _pressedAnswerButton;
     private int _correctAnswer = 0;
     public int СorrectAnswer
     {
         get { return _correctAnswer; }
         set {  _correctAnswer = value; }   
     }
+    
 
     private void Awake()
     {
@@ -42,8 +44,13 @@ public class GameManager : MonoBehaviour
 
             // Reset CorrectAnswer value
             ResetCorrectAnswerValue();
-        } else
+            UILogic.instance.ResetAnswerButtonsStyle();
+            UILogic.instance.HandleSelectedQuestionButton();
+           
+        } else if (selectedAnswer != 0)
         {
+            _pressedAnswerButton = UILogic.instance.AnswerButtonsList[selectedAnswer - 1].GetComponent<Button>();
+            HandleWrongPressedAnswer();
             Debug.Log("Wrong!");
         }
     }
@@ -52,4 +59,14 @@ public class GameManager : MonoBehaviour
     {
         _correctAnswer = 0;
     }
+
+    private void HandleWrongPressedAnswer()
+    {
+        ColorBlock colors = _pressedAnswerButton.colors;
+        colors.disabledColor = Color.red;
+        _pressedAnswerButton.colors = colors;
+        _pressedAnswerButton.interactable = false;
+    }
+
+    
 }

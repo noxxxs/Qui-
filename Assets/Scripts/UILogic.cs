@@ -1,3 +1,5 @@
+using PrimeTween;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -10,9 +12,19 @@ public class UILogic : MonoBehaviour
     [SerializeField] private GameObject _questionPanelParent;
     [SerializeField] private GameObject _answerPanelParent;
     [SerializeField] private GameObject _returnToQestionsButton;
-    [SerializeField] private List<Button> _answerButtons;
+    [SerializeField] private List<Button> _answerButtonsList;
 
-    public List<Button> AnswerButtons => _answerButtons;
+    private Dictionary<RectTransform, Vector2> _quizParentAllUIDictionary = new Dictionary<RectTransform, Vector2>();
+    private Button _selectedQuestionButton;
+
+    public Dictionary<RectTransform, Vector2> QuizParentAllUIDictionaty => _quizParentAllUIDictionary;
+    public List<Button> AnswerButtonsList => _answerButtonsList;
+    public Button SelectedQuestionButton
+    {
+        get { return _selectedQuestionButton; }
+        set { _selectedQuestionButton = value; }
+    }
+
     private void Awake()
     {
         if (instance != null && instance != this)
@@ -44,10 +56,15 @@ public class UILogic : MonoBehaviour
     public void ShowQuizPanel()
     {
         _quizPanelParent.SetActive(true);
+        InQuizPanelAnimation();
     }
 
     public void HideQuizPanel()
     {
+        foreach (var uiElement in _quizParentAllUIDictionary)
+        {
+            uiElement.Key.gameObject.SetActive(false);
+        }
         _quizPanelParent.SetActive(false);
     }
 
@@ -66,6 +83,54 @@ public class UILogic : MonoBehaviour
         HideQuestionPanel();
         HideAnswerPanel();
         ShowQuizPanel();
+        ResetAnswerButtonsStyle();
         GameManager.instance.ResetCorrectAnswerValue();
+    }
+
+    public void HandleSelectedQuestionButton()
+    {
+        ColorBlock colors = _selectedQuestionButton.colors;
+        colors.disabledColor = Color.lightGreen;
+        _selectedQuestionButton.colors = colors;
+        _selectedQuestionButton.interactable = false;
+    }
+
+    public void ResetAnswerButtonsStyle()
+    {
+        ColorBlock newColors = ColorBlock.defaultColorBlock;
+        newColors.disabledColor = Color.white;
+
+        foreach (var answerButtonObj in AnswerButtonsList)
+        {
+            Button button = answerButtonObj.GetComponent<Button>();
+            button.interactable = true;
+            button.colors = newColors;
+        }
+    }
+
+    public void InQuizPanelAnimation()
+    {
+        foreach (var uiElement in _quizParentAllUIDictionary)
+        {
+            uiElement.Key.gameObject.SetActive(false);
+        }
+
+        StartCoroutine(InQuizPanelAnimationCoroutine());
+    }
+
+    private IEnumerator InQuizPanelAnimationCoroutine()
+    {
+        foreach (var uiElement in _quizParentAllUIDictionary)
+        {
+            // Add offset to initial position to uiElement
+            RectTransform recTransfrom = uiElement.Key.GetComponent<RectTransform>();
+            Vector2 offsetPosition = recTransfrom.anchoredPosition + new Vector2 (0, -100);
+            recTransfrom.anchoredPosition = offsetPosition;
+
+            uiElement.Key.gameObject.SetActive(true);
+            Vector2 targetPosition = uiElement.Value;
+            Tween.UIAnchoredPosition(uiElement.Key.GetComponent<RectTransform>(), targetPosition, 0.2f, Ease.InSine);
+            yield return new WaitForSeconds(0.0125f);
+        }
     }
 }
