@@ -4,6 +4,16 @@ using UnityEngine.UI;
 public class NoAIDataSO : ScriptableObject
 {
     public string[] Questions;
-    public Image[] FirstImage;
-    public Image[] SecondImage;
+
+    public Sprite[] FirstSprites;
+    public Sprite[] SecondSprites;
+
+    public AnswerGroup[] answerGroup;
+
+    [System.Serializable]
+    public class AnswerGroup
+    {
+        public string[] Answer;
+        public int CorrectAnswer;
+    }
 }

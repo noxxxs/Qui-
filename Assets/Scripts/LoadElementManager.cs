@@ -4,6 +4,7 @@ using System.Linq;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Video;
 
 public class LoadElementManager : MonoBehaviour
 {
@@ -35,6 +36,7 @@ public class LoadElementManager : MonoBehaviour
     private float QUIZ_INIT_OFFSET = 10000f;
 
     // private properties
+    private Dictionary <CategoryType, CategoryContentSO> _categoryContentDictionary = new Dictionary<CategoryType, CategoryContentSO>();
     private Dictionary<CategoryType, GameObject> _questionPanelsDictionary = new Dictionary<CategoryType, GameObject>();
     private List<GameObject> _objectsWithLayoutGroups = new List<GameObject>();
 
@@ -50,6 +52,13 @@ public class LoadElementManager : MonoBehaviour
         {
             instance = this;
         }
+
+        // Init category category content Dicrionary
+        foreach (var categorySO in _categoryContentList)
+        {
+            _categoryContentDictionary.Add(categorySO.CategoryType, categorySO);
+        }
+        
     }
 
     private void Start()
@@ -67,8 +76,9 @@ public class LoadElementManager : MonoBehaviour
         quizParentPos += new Vector2(0, QUIZ_INIT_OFFSET);
         _quizParent.GetComponent<RectTransform>().anchoredPosition = quizParentPos;
 
-        foreach (CategoryContentSO categorySO in _categoryContentList) 
+        foreach (var categoryType in _categoryContentDictionary) 
         {
+            CategoryContentSO categorySO = categoryType.Value;
             //Spawn Category Panel
             GameObject categoryPanel = Instantiate(_categoryPanelPrefab);
             categoryPanel.name = $"Category_{categorySO.CategoryName}";
@@ -154,8 +164,73 @@ public class LoadElementManager : MonoBehaviour
                         {
                             questionPanelContent.PanelObjectReferences[1].SetActive(false);
                         }
-                    }
-                    break;
+                    } break;
+
+                case CategoryType.MargsaContent:
+                    {
+                        QuestionPanelContent questionPanelContent = _questionPanelsDictionary[categoryType].GetComponent<QuestionPanelContent>();
+                        questionPanelContent.PanelObjectReferences[0].GetComponent<TextMeshProUGUI>().SetText(_margsaContentSO.Questions[questionID - 1]);
+                 
+                    } break;
+
+                case CategoryType.FindTheLost:
+                    {
+                        QuestionPanelContent questionPanelContent = _questionPanelsDictionary[categoryType].GetComponent<QuestionPanelContent>();
+                        questionPanelContent.PanelObjectReferences[0].GetComponent<TextMeshProUGUI>().SetText(_findTheLostSO.Questions[questionID - 1]);
+
+                        // Change Image
+                        questionPanelContent.PanelObjectReferences[1].GetComponent<Image>().sprite = _findTheLostSO.Sprites[questionID - 1];
+                        questionPanelContent.PanelObjectReferences[1].SetActive(true);
+                    } break;  
+
+                case CategoryType.OnlyTsukiko:
+                    {
+                        QuestionPanelContent questionPanelContent = _questionPanelsDictionary[categoryType].GetComponent<QuestionPanelContent>();
+                        questionPanelContent.PanelObjectReferences[0].GetComponent<TextMeshProUGUI>().SetText(_onlyTsukikoSO.Questions[questionID - 1]);
+
+                        // Change Image
+                        questionPanelContent.PanelObjectReferences[1].GetComponent<Image>().sprite = _onlyTsukikoSO.FirstSprites[questionID - 1];
+                        questionPanelContent.PanelObjectReferences[1].SetActive(true);
+
+                        questionPanelContent.PanelObjectReferences[2].GetComponent<Image>().sprite = _onlyTsukikoSO.SecondSprites[questionID - 1];
+                        questionPanelContent.PanelObjectReferences[2].SetActive(true);
+                    } break;
+
+                case CategoryType.MemeZaur:
+                    {
+                        QuestionPanelContent questionPanelContent = _questionPanelsDictionary[categoryType].GetComponent<QuestionPanelContent>();
+                        questionPanelContent.PanelObjectReferences[0].GetComponent<TextMeshProUGUI>().SetText(_memeZaurSO.Questions[questionID - 1]);
+
+                        // Change Image
+                        questionPanelContent.PanelObjectReferences[1].GetComponent<Image>().sprite = _memeZaurSO.FirstSprites[questionID - 1];
+                        questionPanelContent.PanelObjectReferences[1].SetActive(true);
+
+                        questionPanelContent.PanelObjectReferences[2].GetComponent<Image>().sprite = _memeZaurSO.SecondSprites[questionID - 1];
+                        questionPanelContent.PanelObjectReferences[2].SetActive(true);
+                    } break;
+                    
+                case CategoryType.GuessClip:
+                    {
+                        QuestionPanelContent questionPanelContent = _questionPanelsDictionary[categoryType].GetComponent<QuestionPanelContent>();
+                        questionPanelContent.PanelObjectReferences[0].GetComponent<TextMeshProUGUI>().SetText(_guessClipSO.Questions[questionID - 1]);
+
+                        // Change Video Clip
+                        questionPanelContent.PanelObjectReferences[1].GetComponent <VideoPlayer>().clip = _guessClipSO.VideoClips[questionID - 1];
+                        questionPanelContent.PanelObjectReferences[1].SetActive(true);
+                    } break;
+
+                case CategoryType.No_AI:
+                    {
+                        QuestionPanelContent questionPanelContent = _questionPanelsDictionary[categoryType].GetComponent<QuestionPanelContent>();
+                        questionPanelContent.PanelObjectReferences[0].GetComponent<TextMeshProUGUI>().SetText(_noAIDataSO.Questions[questionID - 1]);
+
+                        // Change Images
+                        questionPanelContent.PanelObjectReferences[1].GetComponent<Image>().sprite = _noAIDataSO.FirstSprites[questionID - 1];
+                        questionPanelContent.PanelObjectReferences[1].SetActive(true);
+
+                        questionPanelContent.PanelObjectReferences[2].GetComponent<Image>().sprite = _noAIDataSO.SecondSprites[questionID - 1];
+                        questionPanelContent.PanelObjectReferences[2].SetActive(true);
+                    } break;
             }
         }
     }
@@ -168,16 +243,91 @@ public class LoadElementManager : MonoBehaviour
             {
                 case CategoryType.RawrQuestions:
                     {
-                        for (int i = 0; i < UILogic.instance.AnswerButtonsList.Count; i++)
+                            for (int i = 0; i < _categoryContentDictionary[categoryType].CategoryAnswerNumber; i++)
+                            {
+                                UILogic.instance.AnswerButtonsList[i].GetComponentInChildren<TextMeshProUGUI>().SetText(_rawrQuestionSO.answerGroup[questionID - 1].Answer[i]);
+                            }
+                            // Set correct answer
+                            GameManager.instance.СorrectAnswer = _rawrQuestionSO.answerGroup[questionID - 1].CorrectAnswer;
+
+                    } break;
+
+                case CategoryType.MargsaContent:
+                    {
+                            for (int i = 0; i < _categoryContentDictionary[categoryType].CategoryAnswerNumber; i++)
+                            {
+                                UILogic.instance.AnswerButtonsList[i].GetComponentInChildren<TextMeshProUGUI>().SetText(_margsaContentSO.answerGroup[questionID - 1].Answer[i]);
+                            }
+                            // Set correct answer
+                            GameManager.instance.СorrectAnswer = _margsaContentSO.answerGroup[questionID - 1].CorrectAnswer;
+                    } break;
+
+                case CategoryType.FindTheLost:
+                    {
+                            for (int i = 0; i < _categoryContentDictionary[categoryType].CategoryAnswerNumber; i++)
+                            {
+                                UILogic.instance.AnswerButtonsList[i].GetComponentInChildren<TextMeshProUGUI>().SetText(_findTheLostSO.answerGroup[questionID - 1].Answer[i]);
+                            }
+                            // Set correct answer
+                            GameManager.instance.СorrectAnswer = _findTheLostSO.answerGroup[questionID - 1].CorrectAnswer;
+                    } break;
+
+                case CategoryType.CringeMargsa:
+                    {
+
+
+                    }break;
+
+                case CategoryType.OnlyTsukiko:
+                    {
+                            for (int i = 0; i < _categoryContentDictionary[categoryType].CategoryAnswerNumber; i++)
+                            {
+                                UILogic.instance.AnswerButtonsList[i].GetComponentInChildren<TextMeshProUGUI>().SetText(_onlyTsukikoSO.answerGroup[questionID - 1].Answer[i]);
+                            }
+                            // Set correct answer
+                            GameManager.instance.СorrectAnswer = _onlyTsukikoSO.answerGroup[questionID - 1].CorrectAnswer;
+                    } break;
+
+                case CategoryType.MemeZaur:
+                    {
+                        for (int i = 0; i < _categoryContentDictionary[categoryType].CategoryAnswerNumber; i++)
                         {
-                            UILogic.instance.AnswerButtonsList[i].GetComponentInChildren<TextMeshProUGUI>().SetText(_rawrQuestionSO.answerGroup[questionID - 1].Answer[i]);
+                            UILogic.instance.AnswerButtonsList[i].GetComponentInChildren<TextMeshProUGUI>().SetText(_memeZaurSO.answerGroup[questionID - 1].Answer[i]);
                         }
                         // Set correct answer
-                        GameManager.instance.СorrectAnswer = _rawrQuestionSO.answerGroup[questionID - 1].CorrectAnswer;
+                        GameManager.instance.СorrectAnswer = _memeZaurSO.answerGroup[questionID - 1].CorrectAnswer;
+                    } break;
 
-                    }
-                    break;
+                case CategoryType.GuessClip:
+                    {
+                        for (int i = 0; i < _categoryContentDictionary[categoryType].CategoryAnswerNumber; i++)
+                        {
+                            UILogic.instance.AnswerButtonsList[i].GetComponentInChildren<TextMeshProUGUI>().SetText(_guessClipSO.answerGroup[questionID - 1].Answer[i]);
+                        }
+                        // Set correct answer
+                        GameManager.instance.СorrectAnswer = _guessClipSO.answerGroup[questionID - 1].CorrectAnswer;
+                    } break;
+
+                case CategoryType.No_AI:
+                    {
+                        for (int i = 0; i < _categoryContentDictionary[categoryType].CategoryAnswerNumber; i++)
+                        {
+                            UILogic.instance.AnswerButtonsList[i].GetComponentInChildren<TextMeshProUGUI>().SetText(_noAIDataSO.answerGroup[questionID - 1].Answer[i]);
+                        }
+                        // Set correct answer
+                        GameManager.instance.СorrectAnswer = _noAIDataSO.answerGroup[questionID - 1].CorrectAnswer;
+                    } break;
             }
+
+            // Disable unused button answers
+            for (int i = 0; i < 4; i++)
+            {
+                if (i >= _categoryContentDictionary[categoryType].CategoryAnswerNumber)
+                {
+                    UILogic.instance.AnswerButtonsList[i].enabled = false;
+                }
+            }
+
         }
     }
 

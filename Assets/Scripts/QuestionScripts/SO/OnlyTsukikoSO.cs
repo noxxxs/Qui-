@@ -4,8 +4,17 @@ using UnityEngine.UI;
 [CreateAssetMenu(fileName = "newQuestionData", menuName = "WWBMillionaire/Question/onlyTsukiko", order = 2)]
 public class OnlyTsukikoSO : ScriptableObject
 {
-    public Image[] FirstImage;
-    public Image[] SecondImage;
+    public string[] Questions;
 
-    //Date
+    public Sprite[] FirstSprites;
+    public Sprite[] SecondSprites;
+
+    public AnswerGroup[] answerGroup;
+
+    [System.Serializable]
+    public class AnswerGroup
+    {
+        public string[] Answer;
+        public int CorrectAnswer;
+    }
 }

@@ -31,8 +31,6 @@ public class QuestionButtonNavigation : MonoBehaviour
     }
     public void LoadNextQuestion()
     {
-        Debug.Log(_categoryType + " " + _questionID);
-
         LoadElementManager.instance.ShowNextQuestion(_categoryType, _questionID);
         LoadElementManager.instance.QuestionPanelsDictionary[_categoryType].SetActive(true);
         UILogic.instance.HideQuizPanel();

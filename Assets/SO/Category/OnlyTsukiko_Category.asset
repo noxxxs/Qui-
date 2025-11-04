@@ -15,5 +15,5 @@ MonoBehaviour:
   _categoryType: 4
   _categoryName: "\u041E\u043D\u043B\u0456\u0426\u0443\u043A\u0456\u043A\u043E"
   _questionNumber: 5
-  _categoryAnswerNumber: 3
+  _categoryAnswerNumber: 2
   _questionPanelPrefab: {fileID: 2034630744024447515, guid: 24a9bd614f891bf409b97179e5047ca4, type: 3}

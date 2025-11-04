@@ -113,6 +113,7 @@ public class UILogic : MonoBehaviour
         foreach (var uiElement in _quizParentAllUIDictionary)
         {
             uiElement.Key.gameObject.SetActive(false);
+            Tween.StopAll(uiElement);
         }
 
         StartCoroutine(InQuizPanelAnimationCoroutine());
@@ -129,7 +130,7 @@ public class UILogic : MonoBehaviour
 
             uiElement.Key.gameObject.SetActive(true);
             Vector2 targetPosition = uiElement.Value;
-            Tween.UIAnchoredPosition(uiElement.Key.GetComponent<RectTransform>(), targetPosition, 0.2f, Ease.InSine);
+            Tween.UIAnchoredPosition(uiElement.Key, targetPosition, 0.3f, Ease.OutBack);
             yield return new WaitForSeconds(0.0125f);
         }
     }

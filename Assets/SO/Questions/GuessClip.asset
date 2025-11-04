@@ -12,4 +12,78 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 76bdde1f5b62dcc43bacd748e65d25dd, type: 3}
   m_Name: GuessClip
   m_EditorClassIdentifier: Assembly-CSharp::GuessClipSO
-  Clip: []
+  Questions:
+  - "\u042F\u043A\u0443 \u043D\u0430\u0437\u0432\u0443 \u043C\u0430\u0454 \u0446\u0435\u0439
+    \u043A\u043B\u0456\u043F?"
+  - "\u042F\u043A\u0443 \u043D\u0430\u0437\u0432\u0443 \u043C\u0430\u0454 \u0446\u0435\u0439
+    \u043A\u043B\u0456\u043F?"
+  - "\u042F\u043A\u0443 \u043D\u0430\u0437\u0432\u0443 \u043C\u0430\u0454 \u0446\u0435\u0439
+    \u043A\u043B\u0456\u043F?"
+  - "\u042F\u043A\u0443 \u043D\u0430\u0437\u0432\u0443 \u043C\u0430\u0454 \u0446\u0435\u0439
+    \u043A\u043B\u0456\u043F?"
+  - "\u042F\u043A\u0443 \u043D\u0430\u0437\u0432\u0443 \u043C\u0430\u0454 \u0446\u0435\u0439
+    \u043A\u043B\u0456\u043F?"
+  - "\u042F\u043A\u0443 \u043D\u0430\u0437\u0432\u0443 \u043C\u0430\u0454 \u0446\u0435\u0439
+    \u043A\u043B\u0456\u043F?"
+  - "\u042F\u043A\u0443 \u043D\u0430\u0437\u0432\u0443 \u043C\u0430\u0454 \u0446\u0435\u0439
+    \u043A\u043B\u0456\u043F?"
+  - "\u042F\u043A\u0443 \u043D\u0430\u0437\u0432\u0443 \u043C\u0430\u0454 \u0446\u0435\u0439
+    \u043A\u043B\u0456\u043F?"
+  VideoClips:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  answerGroup:
+  - Answer:
+    - 
+    - 
+    - 
+    - 
+    CorrectAnswer: 1
+  - Answer:
+    - 
+    - 
+    - 
+    - 
+    CorrectAnswer: 1
+  - Answer:
+    - 
+    - 
+    - 
+    - 
+    CorrectAnswer: 1
+  - Answer:
+    - 
+    - 
+    - 
+    - 
+    CorrectAnswer: 1
+  - Answer:
+    - 
+    - 
+    - 
+    - 
+    CorrectAnswer: 1
+  - Answer:
+    - 
+    - 
+    - 
+    - 
+    CorrectAnswer: 1
+  - Answer:
+    - 
+    - 
+    - 
+    - 
+    CorrectAnswer: 1
+  - Answer:
+    - 
+    - 
+    - 
+    - 
+    CorrectAnswer: 1
