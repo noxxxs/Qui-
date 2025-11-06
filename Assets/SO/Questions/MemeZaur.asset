@@ -37,24 +37,24 @@ MonoBehaviour:
   - "\u042F\u043A\u0438\u0439 \u043C\u0435\u043C \u0437\u0456\u0431\u0440\u0430\u0432
     \u0431\u0456\u043B\u044C\u0448\u0435 \u0440\u0435\u0430\u043A\u0446\u0456\u0439
     (\u0432 \u0442\u0433)"
-  FirstSprites:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  SecondSprites:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  FirstMemeSprites:
+  - {fileID: -8034169464087852450, guid: 4875bad4c8cb3c5419b86fdb7ddd07b4, type: 3}
+  - {fileID: 21300000, guid: 80a8c34a54347694d8282c60d57ee987, type: 3}
+  - {fileID: 21300000, guid: b0eff717babc5f046bce6a448c5c3fb9, type: 3}
+  - {fileID: 21300000, guid: 880447833a9fa0a4fbbcc921089dfb7b, type: 3}
+  - {fileID: 21300000, guid: 8b189318ffe8587488c7422e3488e834, type: 3}
+  - {fileID: 21300000, guid: d846e1876ffc65a4e86734baae9b83ac, type: 3}
+  - {fileID: 21300000, guid: e139b4bbaa0af9549954fa823c5855ba, type: 3}
+  - {fileID: 21300000, guid: 981033707c5563841bd784ef61cfd36e, type: 3}
+  SecondMemeSprites:
+  - {fileID: 21300000, guid: 65b63b657dbbb7648a31ca4a32db25e5, type: 3}
+  - {fileID: 21300000, guid: 13eb99cd14b71e44f9d957499a5a1315, type: 3}
+  - {fileID: 21300000, guid: 90039d79ba8b2504b8a555f8e31f8a2a, type: 3}
+  - {fileID: 21300000, guid: 6df8dab2749fd7546bbe9db9fe1c576f, type: 3}
+  - {fileID: 21300000, guid: e58e7cb8f31abd54c91212c13c2ed2ed, type: 3}
+  - {fileID: 21300000, guid: 376ec02c6df107546b9fe001ed15283c, type: 3}
+  - {fileID: 21300000, guid: 455d4021e2f86524880ec76ed2baee84, type: 3}
+  - {fileID: 21300000, guid: 68c3d78b5c13c86418c08d783850d5a1, type: 3}
   answerGroup:
   - Answer:
     - "\u043B\u0456\u0432\u0438\u0439"
@@ -63,7 +63,7 @@ MonoBehaviour:
   - Answer:
     - "\u043B\u0456\u0432\u0438\u0439"
     - "\u043F\u0440\u0430\u0432\u0438\u0439"
-    CorrectAnswer: 2
+    CorrectAnswer: 1
   - Answer:
     - "\u043B\u0456\u0432\u0438\u0439"
     - "\u043F\u0440\u0430\u0432\u0438\u0439"
@@ -71,20 +71,20 @@ MonoBehaviour:
   - Answer:
     - "\u043B\u0456\u0432\u0438\u0439"
     - "\u043F\u0440\u0430\u0432\u0438\u0439"
-    CorrectAnswer: 2
+    CorrectAnswer: 1
   - Answer:
     - "\u043B\u0456\u0432\u0438\u0439"
     - "\u043F\u0440\u0430\u0432\u0438\u0439"
-    CorrectAnswer: 2
+    CorrectAnswer: 1
   - Answer:
     - "\u043B\u0456\u0432\u0438\u0439"
     - "\u043F\u0440\u0430\u0432\u0438\u0439"
-    CorrectAnswer: 2
+    CorrectAnswer: 1
   - Answer:
     - "\u043B\u0456\u0432\u0438\u0439"
     - "\u043F\u0440\u0430\u0432\u0438\u0439"
-    CorrectAnswer: 2
+    CorrectAnswer: 1
   - Answer:
     - "\u043B\u0456\u0432\u0438\u0439"
     - "\u043F\u0440\u0430\u0432\u0438\u0439"
-    CorrectAnswer: 2
+    CorrectAnswer: 1

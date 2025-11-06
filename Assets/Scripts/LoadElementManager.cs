@@ -32,16 +32,18 @@ public class LoadElementManager : MonoBehaviour
     [SerializeField] private MemeZaurSO _memeZaurSO;
     [SerializeField] private GuessClipSO _guessClipSO;
 
-
+    // private properties
     private float QUIZ_INIT_OFFSET = 10000f;
 
-    // private properties
     private Dictionary <CategoryType, CategoryContentSO> _categoryContentDictionary = new Dictionary<CategoryType, CategoryContentSO>();
     private Dictionary<CategoryType, GameObject> _questionPanelsDictionary = new Dictionary<CategoryType, GameObject>();
     private List<GameObject> _objectsWithLayoutGroups = new List<GameObject>();
+    // For FindTheLostCategory
+    private Image _hidenImage;
 
     // public properties
     public Dictionary<CategoryType, GameObject> QuestionPanelsDictionary => _questionPanelsDictionary;
+    public Image HidenImage => _hidenImage;
 
     private void Awake()
     {
@@ -179,8 +181,11 @@ public class LoadElementManager : MonoBehaviour
                         questionPanelContent.PanelObjectReferences[0].GetComponent<TextMeshProUGUI>().SetText(_findTheLostSO.Questions[questionID - 1]);
 
                         // Change Image
-                        questionPanelContent.PanelObjectReferences[1].GetComponent<Image>().sprite = _findTheLostSO.Sprites[questionID - 1];
+                        _hidenImage = questionPanelContent.PanelObjectReferences[1].GetComponent<Image>();
+                        _hidenImage.sprite = _findTheLostSO.ClosedSprites[questionID - 1];
                         questionPanelContent.PanelObjectReferences[1].SetActive(true);
+                        questionPanelContent.PanelObjectReferences[2].GetComponent<Image>().sprite = _findTheLostSO.OpenedSprites[questionID - 1];
+                        questionPanelContent.PanelObjectReferences[2].SetActive(true);
                     } break;  
 
                 case CategoryType.OnlyTsukiko:
@@ -202,10 +207,10 @@ public class LoadElementManager : MonoBehaviour
                         questionPanelContent.PanelObjectReferences[0].GetComponent<TextMeshProUGUI>().SetText(_memeZaurSO.Questions[questionID - 1]);
 
                         // Change Image
-                        questionPanelContent.PanelObjectReferences[1].GetComponent<Image>().sprite = _memeZaurSO.FirstSprites[questionID - 1];
+                        questionPanelContent.PanelObjectReferences[1].GetComponent<Image>().sprite = _memeZaurSO.FirstMemeSprites[questionID - 1];
                         questionPanelContent.PanelObjectReferences[1].SetActive(true);
 
-                        questionPanelContent.PanelObjectReferences[2].GetComponent<Image>().sprite = _memeZaurSO.SecondSprites[questionID - 1];
+                        questionPanelContent.PanelObjectReferences[2].GetComponent<Image>().sprite = _memeZaurSO.SecondMemeSprites[questionID - 1];
                         questionPanelContent.PanelObjectReferences[2].SetActive(true);
                     } break;
                     
@@ -224,12 +229,17 @@ public class LoadElementManager : MonoBehaviour
                         QuestionPanelContent questionPanelContent = _questionPanelsDictionary[categoryType].GetComponent<QuestionPanelContent>();
                         questionPanelContent.PanelObjectReferences[0].GetComponent<TextMeshProUGUI>().SetText(_noAIDataSO.Questions[questionID - 1]);
 
+                        // correst answer could be 1 or 2
+                        int correctAnswer = _noAIDataSO.answerGroup[questionID - 1].CorrectAnswer;
                         // Change Images
-                        questionPanelContent.PanelObjectReferences[1].GetComponent<Image>().sprite = _noAIDataSO.FirstSprites[questionID - 1];
-                        questionPanelContent.PanelObjectReferences[1].SetActive(true);
+                        questionPanelContent.PanelObjectReferences[correctAnswer].GetComponent<Image>().sprite = _noAIDataSO.RealsSprites[questionID - 1];
+                        questionPanelContent.PanelObjectReferences[correctAnswer].SetActive(true);
 
-                        questionPanelContent.PanelObjectReferences[2].GetComponent<Image>().sprite = _noAIDataSO.SecondSprites[questionID - 1];
-                        questionPanelContent.PanelObjectReferences[2].SetActive(true);
+                        int invertedIndexForSecondImage = correctAnswer == 1 ? 2 : 1;
+                        questionPanelContent.PanelObjectReferences[invertedIndexForSecondImage].GetComponent<Image>().sprite = _noAIDataSO.AISprites[questionID - 1];
+                        questionPanelContent.PanelObjectReferences[invertedIndexForSecondImage].SetActive(true);
+
+                        
                     } break;
             }
         }
@@ -324,7 +334,7 @@ public class LoadElementManager : MonoBehaviour
             {
                 if (i >= _categoryContentDictionary[categoryType].CategoryAnswerNumber)
                 {
-                    UILogic.instance.AnswerButtonsList[i].enabled = false;
+                    UILogic.instance.AnswerButtonsList[i].interactable = false;
                 }
             }
 

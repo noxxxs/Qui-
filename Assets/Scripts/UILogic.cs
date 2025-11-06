@@ -1,6 +1,7 @@
-using PrimeTween;
+﻿using PrimeTween;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -45,7 +46,7 @@ public class UILogic : MonoBehaviour
         }
     }
 
-    public void HideQuestionPanel()
+    public void HideQuestions()
     {
         foreach (var questionPanel in LoadElementManager.instance.QuestionPanelsDictionary)
         {
@@ -73,21 +74,21 @@ public class UILogic : MonoBehaviour
         _answerPanelParent.SetActive(true);
     }
 
-    public void HideAnswerPanel()
+    public void HideAnswers()
     {
         _answerPanelParent.SetActive(false);
     }
 
     public void ReturnToQuestions()
     {
-        HideQuestionPanel();
-        HideAnswerPanel();
+        HideQuestions();
+        HideAnswers();
         ShowQuizPanel();
-        ResetAnswerButtonsStyle();
+        ResetAnswerButtons();
         GameManager.instance.ResetCorrectAnswerValue();
     }
 
-    public void HandleSelectedQuestionButton()
+    public void MarkCompletedQuestion()
     {
         ColorBlock colors = _selectedQuestionButton.colors;
         colors.disabledColor = Color.lightGreen;
@@ -95,16 +96,17 @@ public class UILogic : MonoBehaviour
         _selectedQuestionButton.interactable = false;
     }
 
-    public void ResetAnswerButtonsStyle()
+    public void ResetAnswerButtons()
     {
         ColorBlock newColors = ColorBlock.defaultColorBlock;
-        newColors.disabledColor = Color.white;
 
         foreach (var answerButtonObj in AnswerButtonsList)
         {
             Button button = answerButtonObj.GetComponent<Button>();
             button.interactable = true;
             button.colors = newColors;
+
+            answerButtonObj.GetComponentInChildren<TextMeshProUGUI>().SetText("-");
         }
     }
 
@@ -132,6 +134,38 @@ public class UILogic : MonoBehaviour
             Vector2 targetPosition = uiElement.Value;
             Tween.UIAnchoredPosition(uiElement.Key, targetPosition, 0.3f, Ease.OutBack);
             yield return new WaitForSeconds(0.0125f);
+        }
+    }
+
+    public void FadeImage(Image image, float alphaFrom, float alphaTo, float duration, float timeToResetAlpha = 0)
+    {
+        StartCoroutine(ImageFaderCoroutine(image, alphaFrom, alphaTo, duration, timeToResetAlpha));
+    }
+
+    private IEnumerator ImageFaderCoroutine(Image image,float alphaFrom, float alphaTo, float duration, float timeToResetAlpha)
+    {
+        float elapsedTime = 0f;
+        Color color = image.color;
+
+        while (elapsedTime < duration)
+        {
+            elapsedTime += Time.deltaTime;
+            float t = elapsedTime / duration;
+
+            color.a = Mathf.Lerp(alphaFrom, alphaTo, t);
+            image.color = color;
+
+            yield return null;
+        }
+
+        color.a = alphaTo;
+        image.color = color;
+
+        if (timeToResetAlpha != 0)
+        {
+            yield return new WaitForSeconds(timeToResetAlpha);
+            color.a = alphaFrom;
+            image.color = color;
         }
     }
 }

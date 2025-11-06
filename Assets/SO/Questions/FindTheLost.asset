@@ -14,68 +14,79 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::FindTheLostSO
   Questions:
   - "\u0429\u043E \u0446\u0435 \u043C\u043E\u0436\u0435 \u0431\u0443\u0442\u0438?"
+  - "\u042F\u043A\u0430 \u0443\u043B\u044E\u0431\u043B\u0435\u043D\u0430 \u0433\u0440\u0430
+    \u0426\u0443\u043A\u0456\u043A\u043E?"
+  - "\u041D\u0430 \u0449\u043E \u0446\u0435 \u0441\u0445\u043E\u0436\u0435?"
+  - "\u0429\u043E \u0446\u0435 \u0432\u0430\u043C \u043D\u0430\u0433\u0430\u0434\u0443\u0454?"
   - "\u0429\u043E \u0446\u0435 \u043C\u043E\u0436\u0435 \u0431\u0443\u0442\u0438?"
   - "\u0429\u043E \u0446\u0435 \u043C\u043E\u0436\u0435 \u0431\u0443\u0442\u0438?"
   - "\u0429\u043E \u0446\u0435 \u043C\u043E\u0436\u0435 \u0431\u0443\u0442\u0438?"
   - "\u0429\u043E \u0446\u0435 \u043C\u043E\u0436\u0435 \u0431\u0443\u0442\u0438?"
-  - "\u0429\u043E \u0446\u0435 \u043C\u043E\u0436\u0435 \u0431\u0443\u0442\u0438?"
-  - "\u0429\u043E \u0446\u0435 \u043C\u043E\u0436\u0435 \u0431\u0443\u0442\u0438?"
-  - "\u0429\u043E \u0446\u0435 \u043C\u043E\u0436\u0435 \u0431\u0443\u0442\u0438?"
-  Sprites:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  ClosedSprites:
+  - {fileID: 21300000, guid: a06dea0a6ba24c04e9efed9f93e67dcc, type: 3}
+  - {fileID: 21300000, guid: 86c1b595e74575649af448515ae2dad1, type: 3}
+  - {fileID: 21300000, guid: d685698da5dabf84c8eca807f9baf888, type: 3}
+  - {fileID: 21300000, guid: 7ec8bb2c1b5302a4481ecffbbb5d851e, type: 3}
+  - {fileID: 21300000, guid: c8d1c2851d40f15498d376bfbc26e9ac, type: 3}
+  - {fileID: 21300000, guid: 674b2087c2b9eff48975b65643115137, type: 3}
+  - {fileID: 21300000, guid: dd5cf94b7913f1e41a9a408fbc4eb4d9, type: 3}
+  - {fileID: 21300000, guid: 1946d14e92a0b3f4c935b76605d5476c, type: 3}
+  OpenedSprites:
+  - {fileID: 21300000, guid: 25865fa25b8551940b618059921b00e4, type: 3}
+  - {fileID: 21300000, guid: edd0f86c7d9be7743b5923a6c41414e6, type: 3}
+  - {fileID: 21300000, guid: 7c8a64d4b4df8fc45840d84bb84f0a24, type: 3}
+  - {fileID: 21300000, guid: 6493854d5d97d5949ae92e10a6f6709b, type: 3}
+  - {fileID: 21300000, guid: ec44f9599e87e2b44bb53350c3376de1, type: 3}
+  - {fileID: 21300000, guid: cb52d4f44f1872349bfd9700f4dc491b, type: 3}
+  - {fileID: 21300000, guid: f0ce0c65343e2a64c9256c585dfbec83, type: 3}
+  - {fileID: 21300000, guid: f67d897280edada45b3ca92d5c2b0c74, type: 3}
   answerGroup:
   - Answer:
-    - "\u041A\u0430\u0441\u0442\u0440\u0443\u043B\u044F"
+    - "\u043A\u0430\u0441\u0442\u0440\u0443\u043B\u044F"
     - "\u0426\u0443\u043A\u0456\u043A\u043E"
-    - "\u0422\u0435\u0440\u043C\u043E\u0441"
-    - "\u0427\u0435\u0440\u043F\u0430\u043A"
+    - "\u0442\u0435\u0440\u043C\u043E\u0441"
+    - "\u043C\u0456\u0448\u043E\u043A \u0437 \u043A\u0430\u0440\u0442\u043E\u043F\u043B\u044C\u043E\u0443"
     CorrectAnswer: 2
   - Answer:
-    - "\u041A\u0430\u0441\u0442\u0440\u0443\u043B\u044F"
-    - "\u0426\u0443\u043A\u0456\u043A\u043E"
-    - "\u0422\u0435\u0440\u043C\u043E\u0441"
-    - "\u0427\u0435\u0440\u043F\u0430\u043A"
+    - Dota 2
+    - Wuthering Waves
+    - Valheim
+    - 'The Elder Scrolls V: Skyrim'
+    CorrectAnswer: 3
+  - Answer:
+    - "\u043F\u043E\u0434\u0443\u0448\u043A\u0430 \u0437 \u0430\u0432\u043E\u043A\u0430\u0434\u043E"
+    - "\u0441\u0438\u0434\u0456\u043D\u043D\u044F \u0434\u043B\u044F \u0443\u043D\u0456\u0442\u0430\u0437\u0443"
+    - "\u0441\u043A\u0456\u0444\u0441\u044C\u043A\u0430 \u043F\u0435\u043A\u0442\u043E\u0440\u0430\u043B\u044C"
+    - "\u043F\u043E\u0434\u0443\u0448\u043A\u0430 \u0437 \u043A\u043E\u0442\u0438\u043A\u0430\u043C\u0438"
+    CorrectAnswer: 1
+  - Answer:
+    - "\u0447\u0430\u0448\u043A\u0430"
+    - "\u043A\u043E\u0440\u043E\u0431\u043E\u0447\u043A\u0430 \u0434\u043B\u044F
+      \u0447\u0430\u0439\u043E\u043C\u0447\u043A\u0443"
+    - "\u043F\u043E\u043F\u0456\u043B\u044C\u043D\u0438\u0447\u043A\u0430"
+    - "\u0431\u043B\u043E\u043A\u043D\u043E\u0442\u0438\u043A"
     CorrectAnswer: 2
   - Answer:
-    - "\u041A\u0430\u0441\u0442\u0440\u0443\u043B\u044F"
+    - "\u0431\u0430\u0442\u043E\u043C\u0447\u0438\u043A \u0440\u043E\u0448\u0435\u043D"
+    - "\u0432\u0435\u0431\u043A\u0430"
+    - "\u043F\u0443\u043B\u044C\u0442"
+    - "ssd \u043D\u0430\u043A\u043E\u043F\u0438\u0447\u0443\u0432\u0430\u0447"
+    CorrectAnswer: 1
+  - Answer:
+    - "\u0456\u0433\u0440\u0430\u0448\u043A\u043E\u0432\u0430 \u043C\u0430\u0448\u0438\u043D\u043A\u0430"
     - "\u0426\u0443\u043A\u0456\u043A\u043E"
     - "\u0422\u0435\u0440\u043C\u043E\u0441"
-    - "\u0427\u0435\u0440\u043F\u0430\u043A"
+    - "\u0433\u0430\u0437\u043E\u043D\u043E\u043A\u043E\u0441\u0430\u0440\u043A\u0430"
+    CorrectAnswer: 4
+  - Answer:
+    - "\u0434\u0435\u043A\u043E"
+    - "\u0442\u043E\u0444\u043D\u0438\u043A\u0438"
+    - "\u043A\u0430\u0440\u0442\u043E\u043D\u043D\u0430 \u043A\u043E\u0440\u043E\u0431\u043A\u0430"
+    - "\u0430\u0440\u0442\u0438\u043A"
     CorrectAnswer: 2
   - Answer:
-    - "\u041A\u0430\u0441\u0442\u0440\u0443\u043B\u044F"
-    - "\u0426\u0443\u043A\u0456\u043A\u043E"
-    - "\u0422\u0435\u0440\u043C\u043E\u0441"
-    - "\u0427\u0435\u0440\u043F\u0430\u043A"
-    CorrectAnswer: 2
-  - Answer:
-    - "\u041A\u0430\u0441\u0442\u0440\u0443\u043B\u044F"
-    - "\u0426\u0443\u043A\u0456\u043A\u043E"
-    - "\u0422\u0435\u0440\u043C\u043E\u0441"
-    - "\u0427\u0435\u0440\u043F\u0430\u043A"
-    CorrectAnswer: 2
-  - Answer:
-    - "\u041A\u0430\u0441\u0442\u0440\u0443\u043B\u044F"
-    - "\u0426\u0443\u043A\u0456\u043A\u043E"
-    - "\u0422\u0435\u0440\u043C\u043E\u0441"
-    - "\u0427\u0435\u0440\u043F\u0430\u043A"
-    CorrectAnswer: 2
-  - Answer:
-    - "\u041A\u0430\u0441\u0442\u0440\u0443\u043B\u044F"
-    - "\u0426\u0443\u043A\u0456\u043A\u043E"
-    - "\u0422\u0435\u0440\u043C\u043E\u0441"
-    - "\u0427\u0435\u0440\u043F\u0430\u043A"
-    CorrectAnswer: 2
-  - Answer:
-    - "\u041A\u0430\u0441\u0442\u0440\u0443\u043B\u044F"
-    - "\u0426\u0443\u043A\u0456\u043A\u043E"
-    - "\u0422\u0435\u0440\u043C\u043E\u0441"
-    - "\u0427\u0435\u0440\u043F\u0430\u043A"
-    CorrectAnswer: 2
+    - "\u0441\u0430\u043B\u0430\u0442"
+    - "\u0441\u0443\u043C\u0456\u0448-\u0441\u0454\u043C\u043E\u043A"
+    - "\u043A\u0430\u0432\u0430"
+    - "\u0437\u0430\u0432\u0430\u0440\u043D\u0438\u043A"
+    CorrectAnswer: 3

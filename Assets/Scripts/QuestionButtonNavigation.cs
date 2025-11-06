@@ -35,5 +35,8 @@ public class QuestionButtonNavigation : MonoBehaviour
         LoadElementManager.instance.QuestionPanelsDictionary[_categoryType].SetActive(true);
         UILogic.instance.HideQuizPanel();
         UILogic.instance.SelectedQuestionButton = _button;
+
+        // Set selected category type
+        GameManager.instance.SelectedCategory = _categoryType;
     }
 }

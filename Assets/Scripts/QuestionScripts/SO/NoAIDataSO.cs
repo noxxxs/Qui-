@@ -5,8 +5,8 @@ public class NoAIDataSO : ScriptableObject
 {
     public string[] Questions;
 
-    public Sprite[] FirstSprites;
-    public Sprite[] SecondSprites;
+    public Sprite[] AISprites;
+    public Sprite[] RealsSprites;
 
     public AnswerGroup[] answerGroup;
 

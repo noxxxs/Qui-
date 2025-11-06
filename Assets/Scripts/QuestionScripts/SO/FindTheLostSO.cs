@@ -5,7 +5,8 @@ using UnityEngine.UI;
 public class FindTheLostSO : ScriptableObject
 {
     public string[] Questions;
-    public Sprite[] Sprites;
+    public Sprite[] ClosedSprites;
+    public Sprite[] OpenedSprites;
 
     public AnswerGroup[] answerGroup;
 

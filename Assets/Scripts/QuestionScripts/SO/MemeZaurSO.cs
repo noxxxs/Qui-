@@ -6,8 +6,8 @@ public class MemeZaurSO : ScriptableObject
 {
     public string[] Questions;
 
-    public Sprite[] FirstSprites;
-    public Sprite[] SecondSprites;
+    public Sprite[] FirstMemeSprites;
+    public Sprite[] SecondMemeSprites;
 
     public AnswerGroup[] answerGroup;
 
