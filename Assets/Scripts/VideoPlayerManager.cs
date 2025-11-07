@@ -21,8 +21,9 @@ public class VideoPlayerManager : MonoBehaviour
         }
     }
 
-    public void VideoPlayerSetUp(QuestionPanelContent questionPanelContent)
+    public void VideoPlayerSetUp()
     {
+        QuestionPanelContent questionPanelContent = LoadElementManager.instance.QuestionPanelsDictionary[CategoryType.GuessClip].GetComponent<QuestionPanelContent>();
         _screenImage = questionPanelContent.PanelObjectReferences[1];
         _videoPlayer = GetComponent<VideoPlayer>();
         

@@ -25,7 +25,7 @@ public class LoadElementManager : MonoBehaviour
     [Header("QuestionDataSO")]
     [SerializeField] private RawrQuestionsSO _rawrQuestionSO;
     [SerializeField] private NoAIDataSO _noAIDataSO;
-    [SerializeField] private CringeSongSO _сringeSongSO;
+    [SerializeField] private CringeSongSO _cringeSongSO;
     [SerializeField] private OnlyTsukikoSO _onlyTsukikoSO;
     [SerializeField] private MargsaContentSO _margsaContentSO;
     [SerializeField] private FindTheLostSO _findTheLostSO;
@@ -65,7 +65,6 @@ public class LoadElementManager : MonoBehaviour
 
     private void Start()
     {
-        VideoPlayerManager.instance.VideoPlayerSetUp(_questionPanelsDictionary[CategoryType.GuessClip].GetComponent<QuestionPanelContent>());
         StartCoroutine(DisableLayoutGroupsAfterFrame());
     }
 
@@ -187,7 +186,15 @@ public class LoadElementManager : MonoBehaviour
                         questionPanelContent.PanelObjectReferences[1].SetActive(true);
                         questionPanelContent.PanelObjectReferences[2].GetComponent<Image>().sprite = _findTheLostSO.OpenedSprites[questionID - 1];
                         questionPanelContent.PanelObjectReferences[2].SetActive(true);
-                    } break;  
+                    } break;
+
+                case CategoryType.CringeMargsa:
+                    {
+                        QuestionPanelContent questionPanelContent = _questionPanelsDictionary[categoryType].GetComponent<QuestionPanelContent>();
+                        questionPanelContent.PanelObjectReferences[0].GetComponent<TextMeshProUGUI>().SetText(_cringeSongSO.Questions[questionID - 1]);
+
+                        SoundResumeManager.instance.AudioClip = _cringeSongSO.AudioClips[questionID - 1];
+                    } break;
 
                 case CategoryType.OnlyTsukiko:
                     {
@@ -286,9 +293,15 @@ public class LoadElementManager : MonoBehaviour
 
                 case CategoryType.CringeMargsa:
                     {
+                        for (int i = 0; i < _categoryContentDictionary[categoryType].CategoryAnswerNumber; i++)
+                        {
+                            UILogic.instance.AnswerButtonsList[i].GetComponentInChildren<TextMeshProUGUI>().SetText(_cringeSongSO.answerGroup[questionID - 1].Answer[i]);
+                        }
+                        // Set correct answer
+                        GameManager.instance.СorrectAnswer = _cringeSongSO.answerGroup[questionID - 1].CorrectAnswer;
 
-
-                    }break;
+                    }
+                    break;
 
                 case CategoryType.OnlyTsukiko:
                     {

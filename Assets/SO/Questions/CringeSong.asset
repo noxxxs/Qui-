@@ -12,4 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 271b0d3df0f60fb4b9c258637f2c573e, type: 3}
   m_Name: CringeSong
   m_EditorClassIdentifier: Assembly-CSharp::CringeSongSO
-  Song: []
+  Questions:
+  - "\u042F\u043A\u0443 \u043F\u0456\u0441\u043D\u044E \u043D\u0430\u0441\u043F\u0456\u0432\u0443\u044E\u0442\u044C
+    \u0417\u0430\u0432\u0440\u0438?"
+  AudioClips:
+  - {fileID: 8300000, guid: 35143d16bab7c2945beb8e644bfeb955, type: 3}
+  answerGroup:
+  - Answer:
+    - 
+    - 
+    - 
+    - 
+    CorrectAnswer: 1

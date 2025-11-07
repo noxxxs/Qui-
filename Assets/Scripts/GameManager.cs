@@ -37,6 +37,10 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         LoadElementManager.instance.LoadQuizPanel();
+
+        // Init Other managers from this point or Set Script Order Exection in build settings
+        VideoPlayerManager.instance.VideoPlayerSetUp();
+        SoundResumeManager.instance.Init();
     }
 
     public void ValidateAnswer(int selectedAnswer)
