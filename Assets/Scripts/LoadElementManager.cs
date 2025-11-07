@@ -65,6 +65,7 @@ public class LoadElementManager : MonoBehaviour
 
     private void Start()
     {
+        VideoPlayerManager.instance.VideoPlayerSetUp(_questionPanelsDictionary[CategoryType.GuessClip].GetComponent<QuestionPanelContent>());
         StartCoroutine(DisableLayoutGroupsAfterFrame());
     }
 
@@ -220,8 +221,7 @@ public class LoadElementManager : MonoBehaviour
                         questionPanelContent.PanelObjectReferences[0].GetComponent<TextMeshProUGUI>().SetText(_guessClipSO.Questions[questionID - 1]);
 
                         // Change Video Clip
-                        questionPanelContent.PanelObjectReferences[1].GetComponent <VideoPlayer>().clip = _guessClipSO.VideoClips[questionID - 1];
-                        questionPanelContent.PanelObjectReferences[1].SetActive(true);
+                        VideoPlayerManager.instance.ChangeVideoClip(_guessClipSO.VideoClips[questionID - 1]);
                     } break;
 
                 case CategoryType.No_AI:
@@ -244,6 +244,8 @@ public class LoadElementManager : MonoBehaviour
             }
         }
     }
+
+
 
     public void SetNewAnswerOptions(CategoryType categoryType, int questionID)
     {

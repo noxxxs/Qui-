@@ -86,6 +86,8 @@ public class UILogic : MonoBehaviour
         ShowQuizPanel();
         ResetAnswerButtons();
         GameManager.instance.ResetCorrectAnswerValue();
+
+        VideoPlayerManager.instance.StopVideoPlayer();
     }
 
     public void MarkCompletedQuestion()

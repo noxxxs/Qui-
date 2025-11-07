@@ -60,8 +60,9 @@ public class GameManager : MonoBehaviour
         if (_selectedCategory == CategoryType.FindTheLost)
         {
             UILogic.instance.FadeImage(LoadElementManager.instance.HidenImage, 1, 0, 0.5f, 2f);
-            yield return new WaitForSeconds(2f);
+            yield return new WaitForSeconds(1f);
         }
+        yield return new WaitForSeconds(1f);
         UILogic.instance.HideQuestions();
         UILogic.instance.HideAnswers();
         UILogic.instance.ShowQuizPanel();
@@ -71,6 +72,8 @@ public class GameManager : MonoBehaviour
 
         UILogic.instance.ResetAnswerButtons();
         UILogic.instance.MarkCompletedQuestion();
+
+        VideoPlayerManager.instance.StopVideoPlayer();
     }
 
     public void ResetCorrectAnswerValue()
