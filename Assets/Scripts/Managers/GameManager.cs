@@ -65,6 +65,9 @@ public class GameManager : MonoBehaviour
         {
             UILogic.instance.FadeImage(LoadElementManager.instance.HidenImage, 1, 0, 0.5f, 2f);
             yield return new WaitForSeconds(1f);
+        } else if (_selectedCategory == CategoryType.CringeMargsa)
+        {
+            SoundResumeManager.instance.StopSoundResuming();
         }
         yield return new WaitForSeconds(1f);
         UILogic.instance.HideQuestions();
@@ -99,12 +102,18 @@ public class GameManager : MonoBehaviour
             {
                 button.interactable = false;
             }
+
+            // Play SFX
+            AudioManager.instance.PlayCorrectAnswer();
         } else
         {
             colors = _pressedAnswerButton.colors;
             colors.disabledColor = Color.red;
             _pressedAnswerButton.colors = colors;
             _pressedAnswerButton.interactable = false;
+
+            // Play SFX
+            AudioManager.instance.PlayWrongAnswer();
         }
        
     }

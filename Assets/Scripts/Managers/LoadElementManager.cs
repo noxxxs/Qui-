@@ -123,6 +123,7 @@ public class LoadElementManager : MonoBehaviour
                 questionButton.GetComponent<Button>().onClick.AddListener(() =>
                 {
                     QuestionButtonData.LoadNextQuestion();
+                    AudioManager.instance.PlayButtonClick();
                 });
             }
             // Spawn and deactivate QuestionPanels for each category
@@ -134,6 +135,7 @@ public class LoadElementManager : MonoBehaviour
             if (!_questionPanelsDictionary.TryAdd(categorySO.CategoryType, questionPanel))
                 throw new System.Exception("Category SO Data has wrong values");
         }
+
     }
 
     public void ShowNextQuestion(CategoryType categoryType, int questionID)

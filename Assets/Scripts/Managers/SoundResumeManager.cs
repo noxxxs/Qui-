@@ -8,6 +8,12 @@ public class SoundResumeManager : MonoBehaviour
 {
     public static SoundResumeManager instance;
 
+
+    [SerializeField] private Sprite _onPauseIcon;
+    [SerializeField] private Sprite _onPlayIcon;
+    private Image _buttonIconImage;
+
+
     private Slider _slider;
     private Button _resumeButton;
     private TextMeshProUGUI _soundTimerText;
@@ -23,7 +29,8 @@ public class SoundResumeManager : MonoBehaviour
     private float _soundTimer;
     private float _soundDuration;
     private bool _isPlaying = false;
-   // private bool _isFinished = true;
+    private bool _canUseButton = true;
+
 
     private void Awake()
     {
@@ -50,6 +57,7 @@ public class SoundResumeManager : MonoBehaviour
         if (_soundTimer >= _soundDuration && _isPlaying)
         {
             ResetSoundResuming();
+            _buttonIconImage.sprite = _onPlayIcon;
         }
             
     }
@@ -60,6 +68,7 @@ public class SoundResumeManager : MonoBehaviour
         _soundDuration = newAudioClip.length;
         _slider.maxValue = _soundDuration;
         _audioSource.clip = newAudioClip;
+        _canUseButton = true;
 
         //Reset Timer to start position
         ResetSoundResuming();
@@ -73,6 +82,7 @@ public class SoundResumeManager : MonoBehaviour
         _slider = questionPanelContent.PanelObjectReferences[1].GetComponent<Slider>();
         _soundTimerText = questionPanelContent.PanelObjectReferences[2].GetComponent<TextMeshProUGUI>();
         _resumeButton = questionPanelContent.PanelObjectReferences[3].GetComponent<Button>();
+        _buttonIconImage = questionPanelContent.PanelObjectReferences[4].GetComponent<Image>();
 
         _resumeButton.onClick.AddListener(OnResumeButtonClick);
 
@@ -88,18 +98,23 @@ public class SoundResumeManager : MonoBehaviour
 
     public void OnResumeButtonClick()
     {
+        if (!_canUseButton)
+            return;
         // Pause wile playing
         if (_audioSource.time > 0 && _isPlaying)
         {
             _audioSource.Pause();
             _isPlaying = false;
- 
+
+            _buttonIconImage.sprite = _onPlayIcon;
         } 
         // Unpause
         else if (_audioSource.time > 0 && !_isPlaying)
         {
             _audioSource.UnPause();
             _isPlaying = true;
+
+            _buttonIconImage.sprite = _onPauseIcon;
         } 
         // Play from start
         else if (_audioSource.time == 0 && !_isPlaying)
@@ -107,6 +122,8 @@ public class SoundResumeManager : MonoBehaviour
             ResetSoundResuming();
             _audioSource.Play();
             _isPlaying = true;
+
+            _buttonIconImage.sprite = _onPauseIcon;
         }
     }
 
@@ -116,6 +133,17 @@ public class SoundResumeManager : MonoBehaviour
         _soundTimer = 0;
         UpdateTimerText();
         _isPlaying = false;
+    }
+
+    public void StopSoundResuming()
+    {
+        _audioSource.Stop();
+        _slider.SetValueWithoutNotify(0);
+        _soundTimer = 0;
+        UpdateTimerText();
+        _isPlaying = false;
+        _buttonIconImage.sprite = _onPlayIcon;
+        _canUseButton = false;
     }
 
 }

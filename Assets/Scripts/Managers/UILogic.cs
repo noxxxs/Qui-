@@ -15,9 +15,17 @@ public class UILogic : MonoBehaviour
     [SerializeField] private GameObject _returnToQestionsButton;
     [SerializeField] private List<Button> _answerButtonsList;
 
+    [Header("QuitPanel")]
+    [SerializeField] private GameObject _quitPanel;
+    [SerializeField] private Button _exitGameButton;
+    [SerializeField] private Button _returnButton;
+
     private Dictionary<RectTransform, Vector2> _quizParentAllUIDictionary = new Dictionary<RectTransform, Vector2>();
     private Button _selectedQuestionButton;
 
+    public GameObject QuitPanel => _quitPanel;
+    public Button ExitGameButton => _exitGameButton;
+    public Button ReturnButton => _returnButton;
     public Dictionary<RectTransform, Vector2> QuizParentAllUIDictionaty => _quizParentAllUIDictionary;
     public List<Button> AnswerButtonsList => _answerButtonsList;
     public Button SelectedQuestionButton
@@ -58,6 +66,7 @@ public class UILogic : MonoBehaviour
     {
         _quizPanelParent.SetActive(true);
         InQuizPanelAnimation();
+
     }
 
     public void HideQuizPanel()
